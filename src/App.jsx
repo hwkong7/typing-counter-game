@@ -5,7 +5,7 @@ import GameScreen from './GameScreen'
 import { getTheme } from './themes'
 import { getDifficulty } from './settings'
 
-const HIGH_SCORE_KEY = 'code-rain-high-score'
+const HIGH_SCORE_KEY = 'word-rain-high-score'
 
 // App은 화면 전환(screen), 선택된 테마(themeId)/난이도/목숨/목표 점수, 점수(score),
 // 최고 기록처럼 여러 화면이 함께 알아야 하는 상태를 최상위에서 관리합니다.

@@ -74,43 +74,14 @@
 }
 
 .avatar {
-  margin-bottom: 20px;
+  margin-bottom: 12px;
   animation: avatar-bounce 2.4s ease-in-out infinite;
 }
 
-.avatar-face {
-  position: relative;
-  width: 96px;
-  height: 96px;
-  border-radius: 50%;
-  background: linear-gradient(155deg, #ffd76a, #ff9f4a);
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
-}
-
-.avatar-eye {
-  position: absolute;
-  top: 38px;
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background: #2c2c2c;
-}
-.avatar-eye.left {
-  left: 28px;
-}
-.avatar-eye.right {
-  right: 28px;
-}
-
-.avatar-mouth {
-  position: absolute;
-  top: 56px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 28px;
-  height: 14px;
-  border-radius: 0 0 14px 14px;
-  background: #2c2c2c;
+.rainbow-svg {
+  width: 220px;
+  height: auto;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.15));
 }
 
 @keyframes avatar-bounce {
