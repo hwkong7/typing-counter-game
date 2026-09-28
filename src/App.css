@@ -569,6 +569,114 @@
   }
 }
 
+/* ---------- 모바일(휴대폰) 대응 ---------- */
+@media (max-width: 480px) {
+  #home-settings-button {
+    top: 10px;
+    right: 10px;
+    font-size: 11px;
+    padding: 6px 10px;
+  }
+
+  .rainbow-svg {
+    width: 150px;
+  }
+
+  .game-title {
+    font-size: 40px;
+    letter-spacing: 1px;
+    margin: 8px 0 10px;
+  }
+
+  .subtitle {
+    font-size: 15px;
+    margin: 0 0 14px;
+  }
+
+  .high-score {
+    font-size: 15px;
+    padding: 6px 14px;
+    margin: 0 0 20px;
+  }
+
+  .theme-card {
+    width: 104px;
+    padding: 14px 8px;
+  }
+
+  .theme-emoji {
+    font-size: 30px;
+  }
+
+  .setting-group-row {
+    gap: 20px;
+  }
+
+  .option-btn {
+    font-size: 13px;
+    padding: 7px 12px;
+  }
+
+  #start-button {
+    font-size: 17px;
+    padding: 10px 26px;
+  }
+
+  .game-header {
+    padding: 10px 12px;
+  }
+
+  .score-board,
+  .level-badge {
+    font-size: 14px;
+    padding: 5px 12px;
+  }
+
+  .lives {
+    font-size: 15px;
+  }
+
+  .settings-icon-btn {
+    width: 34px;
+    height: 34px;
+    font-size: 18px;
+  }
+
+  .goal-bar {
+    margin: 0 12px 8px;
+  }
+
+  .word-bubble {
+    font-size: 13px;
+    padding: 6px 10px;
+    border-radius: 12px;
+  }
+
+  .pop-effect {
+    font-size: 20px;
+  }
+
+  .feedback {
+    font-size: 14px;
+    padding: 6px 14px;
+  }
+
+  .input-bar {
+    padding: 12px 12px 18px;
+  }
+
+  .input-bar input {
+    font-size: 16px;
+    padding: 10px 14px;
+  }
+
+  .modal {
+    width: min(300px, 90vw);
+    min-width: 0;
+    padding: 22px 20px;
+  }
+}
+
 .counter {
   font-size: 16px;
   padding: 5px 10px;

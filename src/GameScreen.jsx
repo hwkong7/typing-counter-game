@@ -7,7 +7,14 @@ import { WORD_BANK, getWordIcon } from './themes'
 const WORDS_PER_LEVEL = 12
 const TICK_MS = 30
 const SHAKE_MS = 400
-const LANE_X = [8, 24, 40, 56, 72, 88] // 말풍선이 겹치지 않도록 고정된 x 위치(레인)
+// 말풍선이 겹치지 않도록 고정된 x 위치(레인). 화면이 좁은 휴대폰에서는
+// 레인 수를 줄여 레인 사이 간격을 넓게 확보한다.
+const DESKTOP_LANE_X = [8, 24, 40, 56, 72, 88]
+const MOBILE_LANE_X = [14, 38, 62, 86]
+function getLaneX() {
+  if (typeof window === 'undefined') return DESKTOP_LANE_X
+  return window.innerWidth < 480 ? MOBILE_LANE_X : DESKTOP_LANE_X
+}
 const LANE_CLEAR_Y = 22 // 레인이 이 높이를 지나야 같은 레인에 다음 단어를 스폰
 const HANGUL_REGEX = /[ㄱ-ㆎ가-힣]/ // 한/영 키가 한글 모드일 때 감지용
 
@@ -45,6 +52,8 @@ function GameScreen({
   const [correctCount, setCorrectCount] = useState(0)
   const [dismissedSuccess, setDismissedSuccess] = useState(false)
   const [shake, setShake] = useState(false)
+
+  const [laneX] = useState(getLaneX)
 
   const nextIdRef = useRef(0)
   const shakeTimeoutRef = useRef(null)
@@ -100,7 +109,7 @@ function GameScreen({
         const occupiedLanes = new Set(
           prev.filter(w => w.y < LANE_CLEAR_Y).map(w => w.lane),
         )
-        const availableLanes = LANE_X.map((_, i) => i).filter(
+        const availableLanes = laneX.map((_, i) => i).filter(
           i => !occupiedLanes.has(i),
         )
         if (availableLanes.length === 0) return prev
@@ -111,7 +120,7 @@ function GameScreen({
           id: nextIdRef.current++,
           text,
           lane,
-          x: LANE_X[lane],
+          x: laneX[lane],
           y: 0,
         }
         return [...prev, word]
@@ -119,7 +128,7 @@ function GameScreen({
     }, spawnIntervalForLevel(difficulty, level))
 
     return () => clearInterval(spawn)
-  }, [paused, level, difficulty])
+  }, [paused, level, difficulty, laneX])
 
   // 오답 피드백 메시지 자동 소멸
   useEffect(() => {
