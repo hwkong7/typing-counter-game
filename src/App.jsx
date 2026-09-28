@@ -29,6 +29,16 @@ function App() {
     localStorage.setItem(HIGH_SCORE_KEY, String(highScore))
   }, [highScore])
 
+  // 게임 화면에 있는 동안 히스토리를 하나 쌓아 두고, 휴대폰의 뒤로 가기를
+  // 누르면(popstate) 브라우저/앱을 나가는 대신 홈 화면으로 돌아오게 한다.
+  useEffect(() => {
+    function handlePopState() {
+      setScreen('home')
+    }
+    window.addEventListener('popstate', handlePopState)
+    return () => window.removeEventListener('popstate', handlePopState)
+  }, [])
+
   const handleScoreChange = useCallback(delta => {
     setScore(prev => {
       const next = prev + delta
@@ -41,6 +51,7 @@ function App() {
     setScore(0)
     setResetSignal(s => s + 1)
     setScreen('game')
+    window.history.pushState({ screen: 'game' }, '')
   }
 
   function handleRestart() {
@@ -50,6 +61,11 @@ function App() {
 
   function handleExit() {
     setScreen('home')
+    // 뒤로 가기용으로 쌓아둔 히스토리도 함께 정리해서, 다음 뒤로 가기가
+    // 다시 게임 화면으로 돌아가지 않도록 한다.
+    if (window.history.state?.screen === 'game') {
+      window.history.back()
+    }
   }
 
   return (
